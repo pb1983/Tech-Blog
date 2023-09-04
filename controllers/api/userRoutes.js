@@ -1,17 +1,28 @@
 const router = require('express').Router();
-const { User } = require('../../models');
+const  User = require('../../models/User');
 
 
-router.get('/', async(req, res) => {
-    try {
-  
+router.get('/', async (req, res) => {
+  try {
+
     const userData = await User.findAll()
 
     res.status(200).json(userData);
   } catch (err) {
     res.status(500).json(err);
   }
-  });
+});
+
+router.get('/:id', async (req, res) => {
+  try {
+
+    let userData = await User.findByPk(req.params.id)
+
+    res.status(200).json(userData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 
 router.post('/', async (req, res) => {
@@ -52,7 +63,7 @@ router.post('/login', async (req, res) => {
     req.session.save(() => {
       req.session.user_id = userData.id;
       req.session.logged_in = true;
-      
+
       res.json({ user: userData, message: 'You are now logged in!' });
     });
 
@@ -70,5 +81,19 @@ router.post('/logout', (req, res) => {
     res.status(404).end();
   }
 });
+
+
+router.delete("/:id", async (req, res) => {
+  try {
+
+    let userData = await User.destroy({ where: { id: req.params.id } })
+
+    res.status(200).json(userData);
+
+  } catch (err) {
+    res.status(500).json(err);
+  }
+
+})
 
 module.exports = router;

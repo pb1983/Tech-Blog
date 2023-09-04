@@ -1,0 +1,21 @@
+<div id="posts">
+
+
+{{#each posts as | post |}}
+
+<h1>{{title}}</h1>
+
+<p>{{date_created}}</p>
+
+<p>created by: {{name}} </p>
+
+<p>
+{{post.post}} 
+</p>
+
+<button data-id="{{id}}">Delete</button>
+
+{{/each}}
+
+</div>
+<script src = "../../public/js/posts.js"></script>
