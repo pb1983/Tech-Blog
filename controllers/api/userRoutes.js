@@ -1,28 +1,6 @@
 const router = require('express').Router();
-const  User = require('../../models/User');
+const User = require('../../models/User');
 
-
-router.get('/', async (req, res) => {
-  try {
-
-    const userData = await User.findAll()
-
-    res.status(200).json(userData);
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
-
-router.get('/:id', async (req, res) => {
-  try {
-
-    let userData = await User.findByPk(req.params.id)
-
-    res.status(200).json(userData);
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
 
 
 router.post('/', async (req, res) => {
@@ -36,13 +14,15 @@ router.post('/', async (req, res) => {
       res.status(200).json(userData);
     });
   } catch (err) {
+    console.log(err);
     res.status(400).json(err);
   }
 });
 
+
 router.post('/login', async (req, res) => {
   try {
-    const userData = await User.findOne({ where: { email: req.body.email } });
+    const userData = await User.findOne({ where: { name: req.body.name } });
 
     if (!userData) {
       res
@@ -83,17 +63,7 @@ router.post('/logout', (req, res) => {
 });
 
 
-router.delete("/:id", async (req, res) => {
-  try {
 
-    let userData = await User.destroy({ where: { id: req.params.id } })
 
-    res.status(200).json(userData);
-
-  } catch (err) {
-    res.status(500).json(err);
-  }
-
-})
 
 module.exports = router;

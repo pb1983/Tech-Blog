@@ -9,7 +9,13 @@ router.get("/", async (req, res) => {
 
     try {
 
-    let posts = await Post.findAll()
+    let posts = await Post.findAll({
+      // include: [
+      //   {model: User,
+      //   attributes: ['name'],
+      //  },
+      // ],
+    })
    
     posts = posts.map(post => post.get({plain:true}));
     console.log(posts)
@@ -21,11 +27,16 @@ router.get("/", async (req, res) => {
 });
 
 
+router.get('/dashboard', (req, res) => {
+
+  res.render('dashboard', {logged_in: req.session.logged_in});
+});
+
 
 router.get('/login', (req, res) => {
   // If the user is already logged in, redirect the request to another route
   if (req.session.logged_in) {
-    res.redirect('/dashboard');
+    res.redirect('dashboard');
     return;
   }
 
