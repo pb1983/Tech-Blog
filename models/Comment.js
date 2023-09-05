@@ -14,12 +14,24 @@ Comment.init(
       comment: {
         type: DataTypes.STRING,
       },
-      name: {
+      user_id: {
         type: DataTypes.INTEGER,
         references: {
           model: 'user',
           key: 'id',
         },
+      },
+      post_id: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: 'post',
+          key: 'id',
+        },
+      },
+      date_created: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        defaultValue: DataTypes.NOW,
       },
     },
     {

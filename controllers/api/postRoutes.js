@@ -19,9 +19,11 @@ router.get("/:id", async (req, res) => {
 
     try {
 
-        let posts = await Post.findByPk(req.params.id)
+        let post = await Post.findByPk(req.params.id)
+      
+        let postData = post.get({ plain: true });
 
-        res.status(200).json(posts)
+        res.status(200).json(postData)
     } catch (err) {
         res.status(500).json(err);
     }

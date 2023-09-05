@@ -1,0 +1,21 @@
+[
+	{
+		"title": "Blog Post #1",
+		"post": "Some content for my post",
+		"date_created": "2023-09-05T03:01:31.000Z",
+		"user_id": 1
+	},
+	{
+	
+		"title": "Second Blog Post",
+		"post": "Some more content for my post",
+		"date_created": "2023-09-05T03:01:43.000Z",
+		"user_id": 2
+	},
+    {
+		"title": "Blog Post #3",
+		"post": "Even more content for another post",
+		"date_created": "2023-09-05T03:01:43.000Z",
+		"user_id": 1
+	}
+]
