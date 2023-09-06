@@ -2,4 +2,11 @@
 <h2>{{postData.title}}<h2></h2>
 <p>{{postData.post}}</p>
 <p>{{postData.date_created}}</p>
+<p>Posted by: {{postData.user.name}}</p>
+</div>
+
+<div id="comments">
+<p>{{postData.comments.comment}}</p>
+<p>{{postData.comments.user_id}}</p>
+<p>{{postData.comments.date_created}}</p>
 </div>
