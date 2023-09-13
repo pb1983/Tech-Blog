@@ -1,5 +1,14 @@
-      {{#if logged_in}}
-    <h1>Welcome Back, {{user.name}}!</h1>
-        {{else}}
-        <a href="/login">Log in to view your posts.</a>
-        {{/if}}
+{{#if logged_in}}
+<h4>Welcome Back, {{users.name}}!</h4>
+
+{{#each users.posts as | post |}}
+<h5>{{post.title}}</h5>
+<p>{{post.post}}</p>
+<p>{{post.date_created}}</p>
+
+{{/each}}
+
+
+{{else}}
+<a href="/login">Log in to view your posts.</a>
+{{/if}}

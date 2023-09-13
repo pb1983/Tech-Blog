@@ -8,7 +8,7 @@ router.get("/", async (req, res)=> {
     let comments = await Comment.findAll()
     
     comments.map(comment => comment.get({plain:true}));
-    
+
     res.status(200).json(comments)
     } catch (err) {
         res.status(500).json(err);
@@ -19,8 +19,9 @@ router.get("/:id", async (req, res)=> {
 
     try {
     
-    let comments = await Comment.findByPK(req.params.id)
-    
+    let comments = await Comment.findByPk(req.params.id)
+
+  
     res.status(200).json(comments)
     } catch (err) {
         res.status(500).json(err);
@@ -29,13 +30,19 @@ router.get("/:id", async (req, res)=> {
 
 
 router.post("/", async (req, res)=> {
-
+console.log(req.body)
+console.log(req.session.user_id)
     try {
     
-    let comments = await Comment.create(req.body)
-    console.log(comments)
+    let comments = await Comment.create({...req.body,
+        user_id:req.session.user_id,
+      
+        
+    })
+    // console.log(comments)
     res.status(200).json(comments)
     } catch (err) {
+        console.log(err)
         res.status(500).json(err);
       }
 })

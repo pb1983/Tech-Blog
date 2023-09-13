@@ -1,12 +1,24 @@
-<div id="singlepost">
-<h2>{{postData.title}}<h2></h2>
-<p>{{postData.post}}</p>
-<p>{{postData.date_created}}</p>
-<p>Posted by: {{postData.user.name}}</p>
+<div id="singlepost" data-number="{{posts.id}}">
+<h2>{{posts.title}}<h2></h2>
+<p>{{posts.post}}</p>
+<p>{{posts.date_created}}</p>
+<p>Posted by: {{posts.user.name}}</p>
 </div>
 
+{{#each posts.comments as |comment|}}
 <div id="comments">
-<p>{{postData.comments.comment}}</p>
-<p>{{postData.comments.user_id}}</p>
-<p>{{postData.comments.date_created}}</p>
+<p>{{comment.comment}}</p>
+<p>Posted by: {{user.name}}</p>
+<p>{{date_created}}</p>
 </div>
+{{/each}}
+
+<div class="mx-2 col-6" id="post-comment">
+<div class="form-group">
+  <label for="comment">Add a comment:</label>
+  <textarea class="form-control" rows="5" id="comment"></textarea>
+  <button type="button" class="btn btn-dark">Submit</button>
+</div>
+</div>
+
+<script src="../js/posts.js"></script>
